@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head></head>
+   <body>
+
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+
+      <form action="/show.html" method="post">
+         Name - <input type="text" name="name" required>
+         Complaint - <input type="text" name="complaint" required>
+         <input type="submit">
+    </form>
+
+      <table>
+         <thead>
+            <tr>
+               <th>id</th>
+               <th>Name</th>
+               <th>Complaint</th>
+               <th>Remove</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for comp in complaints %}
+               <tr>
+                  <td>{{loop.index}}</td>
+                  <td>{{ comp.name }}</td>
+                  <td>{{ comp.complaint }}</td>
+                  <td><a href=/remove/{{comp.id}}>Remove</a></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </body>
+</html>
